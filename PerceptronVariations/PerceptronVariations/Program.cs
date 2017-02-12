@@ -11,7 +11,10 @@ namespace PerceptronVariations
 		{
 			var perceptronProblemPairs = new List<PerceptronProblemPair>()
 			{
-				new PerceptronProblemPair(new SimplePerceptron(), new RandomNumberCategories())
+				new PerceptronProblemPair(new SimplePerceptron(), new RandomNumberCategories()),
+				new PerceptronProblemPair(new SimplePerceptron(), new XorLogicalGate()),
+				new PerceptronProblemPair(new MultiLayeredPerceptron(), new RandomNumberCategories()),
+				new PerceptronProblemPair(new MultiLayeredPerceptron(), new XorLogicalGate()),
 			};
 
 			// NOTE: Can be parallelized easily via .AsParallel()
