@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using PerceptronVariations.Interfaces;
 
 namespace PerceptronVariations.Problems
 {
-	public class RandomNumberCategories
+	public class RandomNumberCategories : IPerceptronProblem
 	{
 	}
 }

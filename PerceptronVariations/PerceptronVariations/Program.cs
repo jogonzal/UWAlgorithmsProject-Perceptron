@@ -1,15 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using PerceptronVariations.Interfaces;
+using PerceptronVariations.Perceptrons;
+using PerceptronVariations.Problems;
 
 namespace PerceptronVariations
 {
-	class Program
+	static class Program
 	{
 		static void Main(string[] args)
 		{
+			var perceptronProblemPairs = new List<PerceptronProblemPair>()
+			{
+				new PerceptronProblemPair(new SimplePerceptron(), new RandomNumberCategories())
+			};
+
+			// NOTE: Can be parallelized easily via .AsParallel()
+			List<PerceptronResult> perceptronResults = new List<PerceptronResult>();
+			foreach (PerceptronProblemPair perceptronProblemPair in perceptronProblemPairs)
+			{
+				PerceptronResult result = perceptronProblemPair.Perceptron.SolveProblem(perceptronProblemPair.Problem);
+				perceptronResults.Add(result);
+			}
+
+			// NOTE: Can be parallelized easily via .AsParallel()
+			foreach (PerceptronResult perceptronResult in perceptronResults)
+			{
+				perceptronResult.SaveResults();
+			}
 		}
 	}
 }

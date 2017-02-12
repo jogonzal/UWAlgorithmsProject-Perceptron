@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using PerceptronVariations.Interfaces;
 
 namespace PerceptronVariations.Perceptrons
 {
-	class SimplePerceptron
+	class SimplePerceptron : IPerceptron
 	{
+		public PerceptronResult SolveProblem(IPerceptronProblem problem)
+		{
+			throw new System.NotImplementedException();
+		}
 	}
 }
