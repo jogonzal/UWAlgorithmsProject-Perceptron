@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 using PerceptronVariations.Interfaces;
 using PerceptronVariations.Perceptrons;
@@ -13,10 +14,16 @@ namespace PerceptronVariations
 		{
 			var perceptronProblemPairs = new List<PerceptronProblemPair>()
 			{
-				new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0)), new RandomNumberCategories()),
-				//new PerceptronProblemPair(new SimplePerceptron(), new XorLogicalGate()),
+				// TODO: Running them independently is not appropiate
+				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 1, 0.02), new RandomNumberCategories()),
+				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 5, 0.02), new RandomNumberCategories()),
+				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 10, 0.02), new RandomNumberCategories()),
+				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 1, 0.01), new RandomNumberCategories()),
+				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 5, 0.01), new RandomNumberCategories()),
+				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 10, 0.01), new RandomNumberCategories()),
+				////new PerceptronProblemPair(new SimplePerceptron(), new XorLogicalGate()),
 				//new PerceptronProblemPair(new MultiLayeredPerceptron(), new RandomNumberCategories()),
-				//new PerceptronProblemPair(new MultiLayeredPerceptron(), new XorLogicalGate()),
+				new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 1000), new XorLogicalGate()),
 			};
 
 			// NOTE: Can be parallelized easily via .AsParallel()
@@ -30,8 +37,11 @@ namespace PerceptronVariations
 			// NOTE: Can be parallelized easily via .AsParallel()
 			foreach (PerceptronResult perceptronResult in perceptronResults)
 			{
+				Console.WriteLine(perceptronResult.ToString());
 				perceptronResult.SaveResults();
 			}
+
+			Console.ReadKey();
 		}
 	}
 }

@@ -24,7 +24,7 @@ namespace PerceptronVariations.Problems
 				switch (category)
 				{
 					case 0:
-						values[0] = GetRandomNumber(5, 10, r);
+						values[0] = GetRandomNumber(1, 10, r);
 						values[1] = GetRandomNumber(1, 5, r);
 						values[2] = GetRandomNumber(0, 4, r);
 						break;
@@ -78,8 +78,6 @@ namespace PerceptronVariations.Problems
 
 		}
 
-		public int TrainingDataPoints => totalTrainingPoints;
-		public int TestDataPoints => totalTestPoints;
 		public int Dimensions => dimensions;
 		public IList<Point> TrainingPoints => _trainingData;
 		public IList<Point> TestPoints => _testData;

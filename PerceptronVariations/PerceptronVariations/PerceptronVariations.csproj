@@ -50,6 +50,7 @@
     <Compile Include="Interfaces\PerceptronResult.cs" />
     <Compile Include="PerceptronProblemPair.cs" />
     <Compile Include="Perceptrons\MultiLayeredPerceptron.cs" />
+    <Compile Include="Perceptrons\Neuron.cs" />
     <Compile Include="Perceptrons\SimplePerceptron.cs" />
     <Compile Include="Problems\XorLogicalGate.cs" />
     <Compile Include="Problems\RandomNumberCategories.cs" />

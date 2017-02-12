@@ -8,11 +8,13 @@ namespace PerceptronVariations.Perceptrons
 {
 	public class SimplePerceptron : BasePerceptron
 	{
-		private const double learningRate = 0.04;
-		private const int maximumEpochs = 10;
+		private readonly int _maxEpochs;
+		private readonly double _learningRate;
 
-		public SimplePerceptron(ITransferFunction transferFunction) : base(transferFunction)
+		public SimplePerceptron(ITransferFunction transferFunction, int maxEpochs, double learningRate) : base(transferFunction)
 		{
+			_maxEpochs = maxEpochs;
+			_learningRate = learningRate;
 		}
 
 		public override PerceptronResult SolveProblem(IPerceptronProblem problem)
@@ -35,6 +37,7 @@ namespace PerceptronVariations.Perceptrons
 		private PerceptronResult Test(double[] weights, IList<RandomNumberCategories.Point> problemTestPoints)
 		{
 			IList<int> estimates = new List<int>();
+
 			for (int p = 0; p < problemTestPoints.Count; p++)
 			{
 				RandomNumberCategories.Point problemTestPoint = problemTestPoints[p];
@@ -42,7 +45,9 @@ namespace PerceptronVariations.Perceptrons
 				int i = Convert.ToInt32(Math.Round(res));
 				estimates.Add(i);
 			}
-			return new PerceptronResult(estimates, problemTestPoints.Select(s => s.Category).ToList());
+
+			return new PerceptronResult(estimates, problemTestPoints.Select(s => s.Category).ToList(),
+				$"SimplePerceptron with LearningRate '{_learningRate}' and training over '{_maxEpochs}' epochs");
 		}
 
 		private double ObtainEstimate(double[] weights, RandomNumberCategories.Point currentPoint)
@@ -73,15 +78,15 @@ namespace PerceptronVariations.Perceptrons
 
 					for (int weightIndex = 0; weightIndex < weights.Length - 1; weightIndex++)
 					{
-						weights[weightIndex] += learningRate * localError * currentPoint.values[weightIndex];
+						weights[weightIndex] += _learningRate * localError * currentPoint.values[weightIndex];
 					}
 					// Bias
-					weights[weights.Length - 1] += learningRate * localError * 1;
+					weights[weights.Length - 1] += _learningRate * localError * 1;
 
 					globalError += localError * localError;
 				}
 				epochs++;
-			} while (globalError > 0 && epochs < maximumEpochs);
+			} while (globalError > 0 && epochs < _maxEpochs);
 		}
 	}
 }

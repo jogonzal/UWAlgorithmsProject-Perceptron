@@ -1,13 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace PerceptronVariations.Interfaces
 {
 	public class PerceptronResult
 	{
+		public string Descriptor { get; }
 		public double TestErrorRate { get; }
 
-		public PerceptronResult(IList<int> guess, IList<int> real)
+		public PerceptronResult(IList<int> guess, IList<int> real, string descriptor)
 		{
+			Descriptor = descriptor;
 			int total = 0;
 			int totalErrors = 0;
 
@@ -26,6 +29,11 @@ namespace PerceptronVariations.Interfaces
 		public void SaveResults()
 		{
 			// TODO
+		}
+
+		public override string ToString()
+		{
+			return Descriptor + ": " + TestErrorRate.ToString(".000");
 		}
 	}
 }
