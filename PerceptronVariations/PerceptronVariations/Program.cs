@@ -23,7 +23,7 @@ namespace PerceptronVariations
 				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 10, 0.01), new RandomNumberCategories()),
 				////new PerceptronProblemPair(new SimplePerceptron(), new XorLogicalGate()),
 				//new PerceptronProblemPair(new MultiLayeredPerceptron(), new RandomNumberCategories()),
-				new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 1000), new XorLogicalGate()),
+				new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 10000), new XorLogicalGate()),
 			};
 
 			// NOTE: Can be parallelized easily via .AsParallel()
