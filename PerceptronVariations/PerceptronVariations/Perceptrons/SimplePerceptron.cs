@@ -29,7 +29,7 @@ namespace PerceptronVariations.Perceptrons
 				weights[index] = r.NextDouble();
 			}
 
-			Train(weights, problem.TrainingPoints);
+			Train(weights, problem.TrainingPoints, problem.TestPoints);
 
 			return Test(weights, problem.TestPoints);
 		}
@@ -63,7 +63,7 @@ namespace PerceptronVariations.Perceptrons
 			return transferFunctionEstimate;
 		}
 
-		private void Train(double[] weights, IList<RandomNumberCategories.Point> problemTrainingPoints)
+		private void Train(double[] weights, IList<RandomNumberCategories.Point> problemTrainingPoints, IList<RandomNumberCategories.Point> testDataPoints)
 		{
 			double globalError;
 			int epochs = 0;
@@ -72,6 +72,9 @@ namespace PerceptronVariations.Perceptrons
 				globalError = 0;
 				for (int pointIndex = 0; pointIndex < problemTrainingPoints.Count; pointIndex++)
 				{
+					double totalError = CalculateTotalError(testDataPoints, weights);
+					Console.WriteLine(totalError);
+
 					RandomNumberCategories.Point currentPoint = problemTrainingPoints[pointIndex];
 					double transferFunctionEstimate = ObtainEstimate(weights, currentPoint);
 					double localError = currentPoint.Category - transferFunctionEstimate;
@@ -87,6 +90,18 @@ namespace PerceptronVariations.Perceptrons
 				}
 				epochs++;
 			} while (globalError > 0 && epochs < _maxEpochs);
+		}
+
+		private double CalculateTotalError(IList<RandomNumberCategories.Point> problemTrainingPoints, double[] weights)
+		{
+			double totalError = 0;
+			foreach (var problemTrainingPoint in problemTrainingPoints)
+			{
+				double estimate = ObtainEstimate(weights, problemTrainingPoint);
+				double localError = (1.0*estimate - problemTrainingPoint.Category);
+				totalError += localError*localError/2;
+			}
+			return totalError;
 		}
 	}
 }
