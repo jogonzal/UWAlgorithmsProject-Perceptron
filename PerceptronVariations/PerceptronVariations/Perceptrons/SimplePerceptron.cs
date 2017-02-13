@@ -104,15 +104,14 @@ namespace PerceptronVariations.Perceptrons
 			do
 			{
 				globalError = 0;
-				double currentEpochError = 0;
+
+				double testError = CalculateTotalErrorTest(testDataPoints, weights);
+				double trainingError = CalculateTotalErrorTest(problemTrainingPoints, weights);
+				testErrors.Add(testError);
+				trainingErrors.Add(trainingError);
+
 				for (int pointIndex = 0; pointIndex < problemTrainingPoints.Count; pointIndex++)
 				{
-					double testError = CalculateTotalErrorTest(testDataPoints, weights);
-					double trainingError = CalculateTotalErrorTest(problemTrainingPoints, weights);
-					testErrors.Add(testError);
-					trainingErrors.Add(trainingError);
-					// Console.WriteLine(trainingError);
-
 					Point currentPoint = problemTrainingPoints[pointIndex];
 					double transferFunctionEstimate = ObtainEstimate(weights, currentPoint);
 					double localError = currentPoint.ExpectedOutput[0] - transferFunctionEstimate;
@@ -124,11 +123,10 @@ namespace PerceptronVariations.Perceptrons
 					// Bias
 					weights[weights.Length - 1] += _learningRate * localError * 1;
 
-					currentEpochError += localError * localError;
+					globalError += localError * localError / 2;
 				}
-				globalError += currentEpochError;
 
-				PostEpochOperation(currentEpochError, weights);
+				PostEpochOperation(globalError, weights);
 
 				epochs++;
 			} while (globalError > 0 && epochs < _maxEpochs);
@@ -150,7 +148,7 @@ namespace PerceptronVariations.Perceptrons
 			foreach (var problemTrainingPoint in problemTrainingPoints)
 			{
 				double estimate = ObtainEstimate(weights, problemTrainingPoint);
-				double localError = (1.0*estimate - problemTrainingPoint.ExpectedOutput[0]);
+				double localError = (problemTrainingPoint.ExpectedOutput[0] - 1.0 *estimate);
 				totalError += localError*localError/2;
 			}
 			return totalError;
@@ -162,7 +160,7 @@ namespace PerceptronVariations.Perceptrons
 			foreach (var problemTrainingPoint in problemTrainingPoints)
 			{
 				double estimate = ObtainEstimate(weights, problemTrainingPoint);
-				double localError = (1.0 * estimate - problemTrainingPoint.ExpectedOutput[0]);
+				double localError = (problemTrainingPoint.ExpectedOutput[0] - 1.0 * estimate);
 				totalError += localError * localError / 2;
 			}
 			return totalError;

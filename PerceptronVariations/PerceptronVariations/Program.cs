@@ -18,10 +18,10 @@ namespace PerceptronVariations
 			{
 				// TODO: Running them independently is not appropiate
 				//new PerceptronProblemPair(new PocketSimplePerceptron(new StepFunction(0), 1000, 0.02), new RandomNumberCategories()),
-				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 20, 0.02), new RandomNumberCategoriesSeparable()),
-				//new PerceptronProblemPair(new PocketSimplePerceptron(new StepFunction(0), 20, 0.02), new RandomNumberCategoriesSeparable()),
-				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 20, 0.02), new RandomNumberCategoriesInseparable()),
-				//new PerceptronProblemPair(new PocketSimplePerceptron(new StepFunction(0), 20, 0.02), new RandomNumberCategoriesInseparable()),
+				new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 100, 0.02), new RandomNumberCategoriesSeparable()),
+				new PerceptronProblemPair(new PocketSimplePerceptron(new StepFunction(0), 100, 0.02), new RandomNumberCategoriesSeparable()),
+				new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 100, 0.02), new RandomNumberCategoriesInseparable()),
+				new PerceptronProblemPair(new PocketSimplePerceptron(new StepFunction(0), 100, 0.02), new RandomNumberCategoriesInseparable()),
 				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 1, 0.02), new RandomNumberCategories()),
 				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 5, 0.02), new RandomNumberCategories()),
 				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 10, 0.02), new RandomNumberCategories()),
@@ -30,11 +30,11 @@ namespace PerceptronVariations
 				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 10, 0.01), new RandomNumberCategories()),
 				//new PerceptronProblemPair(new SimplePerceptron(), new XorLogicalGate()),
 				//new PerceptronProblemPair(new MultiLayeredPerceptron(), new RandomNumberCategories()),
-				new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 1200, 1), new XorLogicalGate()),
-				new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 1200, 2), new XorLogicalGate()),
-				new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 1200, 4), new XorLogicalGate()),
-				new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 1200, 8), new XorLogicalGate()),
-				new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 1200, 16), new XorLogicalGate()),
+				//new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 1200, 1), new XorLogicalGate()),
+				//new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 1200, 2), new XorLogicalGate()),
+				//new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 1200, 4), new XorLogicalGate()),
+				//new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 1200, 8), new XorLogicalGate()),
+				//new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 1200, 16), new XorLogicalGate()),
 				
 			};
 
