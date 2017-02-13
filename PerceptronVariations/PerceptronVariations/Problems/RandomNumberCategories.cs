@@ -24,14 +24,14 @@ namespace PerceptronVariations.Problems
 				switch (category)
 				{
 					case 0:
-						values[0] = GetRandomNumber(1, 10, r);
-						values[1] = GetRandomNumber(1, 5, r);
+						values[0] = GetRandomNumber(7, 12, r);
+						values[1] = GetRandomNumber(5, 25, r);
 						values[2] = GetRandomNumber(0, 4, r);
 						break;
 					case 1:
 						values[0] = GetRandomNumber(1, 7, r);
 						values[1] = GetRandomNumber(-2, 3, r);
-						values[2] = GetRandomNumber(3, 12, r);
+						values[2] = GetRandomNumber(5, 12, r);
 						break;
 					default:
 						throw new ArgumentException();

@@ -34,7 +34,7 @@ namespace PerceptronVariations.Perceptrons
 			return Test(weights, problem.TestPoints);
 		}
 
-		private PerceptronResult Test(double[] weights, IList<RandomNumberCategories.Point> problemTestPoints)
+		public virtual PerceptronResult Test(double[] weights, IList<RandomNumberCategories.Point> problemTestPoints)
 		{
 			IList<int> estimates = new List<int>();
 
@@ -52,15 +52,22 @@ namespace PerceptronVariations.Perceptrons
 
 		private double ObtainEstimate(double[] weights, RandomNumberCategories.Point currentPoint)
 		{
-			double estimate = 0;
-			for (int weightIndex = 0; weightIndex < weights.Length - 1; weightIndex++)
-			{
-				estimate += weights[weightIndex] * currentPoint.values[weightIndex];
-			}
-			// Bias
-			estimate += weights[weights.Length - 1] * 1;
+			double estimate = ObtainSum(weights, currentPoint);
 			double transferFunctionEstimate = TransferFunction.Evaluate(estimate);
 			return transferFunctionEstimate;
+		}
+
+		public double ObtainSum(double[] weights, RandomNumberCategories.Point currentPoint)
+		{
+			double sum = 0;
+			for (int weightIndex = 0; weightIndex < weights.Length - 1; weightIndex++)
+			{
+				sum += weights[weightIndex] * currentPoint.values[weightIndex];
+			}
+			// Bias
+			sum += weights[weights.Length - 1] * 1;
+
+			return sum;
 		}
 
 		private void Train(double[] weights, IList<RandomNumberCategories.Point> problemTrainingPoints, IList<RandomNumberCategories.Point> testDataPoints)
@@ -70,6 +77,7 @@ namespace PerceptronVariations.Perceptrons
 			do
 			{
 				globalError = 0;
+				double currentEpochError = 0;
 				for (int pointIndex = 0; pointIndex < problemTrainingPoints.Count; pointIndex++)
 				{
 					double totalError = CalculateTotalError(testDataPoints, weights);
@@ -81,15 +89,29 @@ namespace PerceptronVariations.Perceptrons
 
 					for (int weightIndex = 0; weightIndex < weights.Length - 1; weightIndex++)
 					{
-						weights[weightIndex] += _learningRate * localError * currentPoint.values[weightIndex];
+						weights[weightIndex] += _learningRate * localError * currentPoint.values[weightIndex] * Normalize(weights, currentPoint);
 					}
 					// Bias
 					weights[weights.Length - 1] += _learningRate * localError * 1;
 
-					globalError += localError * localError;
+					currentEpochError += localError * localError;
 				}
+				globalError += currentEpochError;
+
+				PostEpochOperation(currentEpochError, weights);
+
 				epochs++;
 			} while (globalError > 0 && epochs < _maxEpochs);
+		}
+
+		public override double Normalize(double[] weights, RandomNumberCategories.Point currentPoint)
+		{
+			return 1.0;
+		}
+
+		public override void PostEpochOperation(double currentEpochError, double[] weights)
+		{
+			// No-Op
 		}
 
 		private double CalculateTotalError(IList<RandomNumberCategories.Point> problemTrainingPoints, double[] weights)
