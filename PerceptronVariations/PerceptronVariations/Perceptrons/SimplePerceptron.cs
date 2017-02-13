@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+
 using PerceptronVariations.Interfaces;
 using PerceptronVariations.Plotting;
-using PerceptronVariations.Problems;
 
 namespace PerceptronVariations.Perceptrons
 {
