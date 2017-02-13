@@ -39,7 +39,8 @@ namespace PerceptronVariations.Perceptrons
 				outputNeurons.Add(new Neuron(randomWeight));
 			}
 
-			List<double> errors = new List<double>();
+			List<double> trainingErrors = new List<double>();
+			List<double> testErrors = new List<double>();
 			for (int epoch = 0; epoch < _maxEpochs; epoch++)
 			{
 				for (int inputIndex = 0; inputIndex < problem.TrainingPoints.Count; inputIndex++)
@@ -109,15 +110,17 @@ namespace PerceptronVariations.Perceptrons
 						middleNeurons[neuronIndex].Commit();
 					}
 
-					// Calculate again
-					var totalError = CalculateTotalError(problem.TrainingPoints, middleNeurons, outputNeurons);
-
-					errors.Add(totalError);
 					//if (inputIndex % 5 == 0)
 					//{
 					//	Console.WriteLine(totalError);
 					//}
 				}
+
+				// Calculate training and test error
+				var trainingError = CalculateTotalError(problem.TrainingPoints, middleNeurons, outputNeurons);
+				var testError = CalculateTotalError(problem.TestPoints, middleNeurons, outputNeurons);
+				trainingErrors.Add(trainingError);
+				testErrors.Add(testError);
 			}
 
 			return new List<ScatterInfo>()
@@ -125,7 +128,8 @@ namespace PerceptronVariations.Perceptrons
 				new ScatterInfo($"MultilayerPerceptron {problem.Name} LearningRate {_learningRate} Epochs {_maxEpochs} NeuronCount {_middleNeuronCount}",
 				"TotalError", "Iteration", new List<Series>()
 				{
-					new Series(errors, "Test")
+					new Series(trainingErrors, "Training"),
+					new Series(testErrors, "Test")
 				})
 			};
 		}
