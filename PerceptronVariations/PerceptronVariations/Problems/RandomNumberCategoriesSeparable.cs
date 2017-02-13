@@ -10,7 +10,7 @@ namespace PerceptronVariations.Problems
 		private Point[] _trainingData;
 		private Point[] _testData;
 
-		const int totalTrainingPoints = 50;
+		const int totalTrainingPoints = 100;
 		const int totalTestPoints = 1000;
 		const int dimensions = 3;
 
@@ -65,13 +65,13 @@ namespace PerceptronVariations.Problems
 			{
 				case 0:
 					input[0] = GetRandomNumber(7, 12, r);
-					input[1] = GetRandomNumber(5, 25, r);
+					input[1] = GetRandomNumber(3, 10, r);
 					input[2] = GetRandomNumber(0, 4, r);
 					break;
 				case 1:
-					input[0] = GetRandomNumber(1, 7, r);
-					input[1] = GetRandomNumber(-2, 3, r);
-					input[2] = GetRandomNumber(5, 12, r);
+					input[0] = GetRandomNumber(1, 8, r);
+					input[1] = GetRandomNumber(-2, 4, r);
+					input[2] = GetRandomNumber(2, 8, r);
 					break;
 				default:
 					throw new ArgumentException();
