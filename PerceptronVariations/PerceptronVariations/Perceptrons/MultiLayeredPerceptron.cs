@@ -20,20 +20,9 @@ namespace PerceptronVariations.Perceptrons
 
 		public IList<ScatterInfo> SolveProblem(IPerceptronProblem problem)
 		{
+			problem.Initialize();
+
 			Random r = new Random();
-
-			// Original problem
-			//double[][] inputs = new double[][]
-			//{
-			//	new double[] {0.05, 0.1},
-			//	new double[] {0.8, 0.8}
-			//};
-
-			//double[][] expected = new double[][]
-			//{
-			//	new double[] {0.3},
-			//	new double[] {0.9},
-			//};
 
 			List<Neuron> middleNeurons = new List<Neuron>();
 			// Neurons and initial weight
