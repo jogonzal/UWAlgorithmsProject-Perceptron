@@ -43,6 +43,12 @@ namespace PerceptronVariations.Perceptrons
 			List<double> testErrors = new List<double>();
 			for (int epoch = 0; epoch < _maxEpochs; epoch++)
 			{
+				// Calculate training and test error
+				var trainingError = CalculateTotalError(problem.TrainingPoints, middleNeurons, outputNeurons);
+				var testError = CalculateTotalError(problem.TestPoints, middleNeurons, outputNeurons);
+				trainingErrors.Add(trainingError);
+				testErrors.Add(testError);
+
 				for (int inputIndex = 0; inputIndex < problem.TrainingPoints.Count; inputIndex++)
 				{
 					var middleOutput = new double[middleNeurons.Count];
@@ -115,12 +121,6 @@ namespace PerceptronVariations.Perceptrons
 					//	Console.WriteLine(totalError);
 					//}
 				}
-
-				// Calculate training and test error
-				var trainingError = CalculateTotalError(problem.TrainingPoints, middleNeurons, outputNeurons);
-				var testError = CalculateTotalError(problem.TestPoints, middleNeurons, outputNeurons);
-				trainingErrors.Add(trainingError);
-				testErrors.Add(testError);
 			}
 
 			return new List<ScatterInfo>()
