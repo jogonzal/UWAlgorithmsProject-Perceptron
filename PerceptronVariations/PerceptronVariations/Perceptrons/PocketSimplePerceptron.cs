@@ -28,7 +28,10 @@ namespace PerceptronVariations.Perceptrons
 			if (currentEpochError < _minError)
 			{
 				_minError = currentEpochError;
-				_optimalWeights = weights;
+				for(int i = 0; i < weights.Length; i++)
+				{
+					_optimalWeights[i] = weights[i];
+				}
 			}
 		}
 
@@ -42,7 +45,12 @@ namespace PerceptronVariations.Perceptrons
 		protected override double[] InitializeWeights(IPerceptronProblem problem, Random r)
 		{
 			var originalweights = base.InitializeWeights(problem, r);
-			_optimalWeights = originalweights;
+			_optimalWeights = new double[originalweights.Length];
+			for (int i = 0; i < originalweights.Length; i++)
+			{
+				_optimalWeights[i] = originalweights[i];
+			}
+
 			return originalweights;
 		}
 	}

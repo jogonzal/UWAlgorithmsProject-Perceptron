@@ -18,16 +18,15 @@ namespace PerceptronVariations
 			{
 				// TODO: Running them independently is not appropiate
 				//new PerceptronProblemPair(new PocketSimplePerceptron(new StepFunction(0), 1000, 0.02), new RandomNumberCategories()),
-				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 20, 0.02), new RandomNumberCategoriesSeparable()),
-				//new PerceptronProblemPair(new PocketSimplePerceptron(new StepFunction(0), 20, 0.02), new RandomNumberCategoriesSeparable()),
-				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 20, 0.02), new RandomNumberCategoriesInseparable()),
-				//new PerceptronProblemPair(new PocketSimplePerceptron(new StepFunction(0), 20, 0.02), new RandomNumberCategoriesInseparable()),
+				new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 100, 0.02), new RandomNumberCategoriesSeparable()),
+				new PerceptronProblemPair(new PocketSimplePerceptron(new StepFunction(0), 100, 0.02), new RandomNumberCategoriesSeparable()),
+				new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 100, 0.02), new RandomNumberCategoriesInseparable()),
+				new PerceptronProblemPair(new PocketSimplePerceptron(new StepFunction(0), 100, 0.02), new RandomNumberCategoriesInseparable()),
 				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 1, 0.02), new RandomNumberCategories()),
 				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 5, 0.02), new RandomNumberCategories()),
 				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 10, 0.02), new RandomNumberCategories()),
 				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 1, 0.01), new RandomNumberCategories()),
 				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 5, 0.01), new RandomNumberCategories()),
-
 
 				// XOR gate and how it behaves against Multilayer
 				// new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 50000, 1), new XorLogicalGate()),
