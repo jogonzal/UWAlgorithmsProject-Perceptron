@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 using PerceptronVariations.Interfaces;
 using PerceptronVariations.Perceptrons;
+using PerceptronVariations.Plotting;
 using PerceptronVariations.Problems;
 using PerceptronVariations.TransferFunction;
 
@@ -12,6 +13,8 @@ namespace PerceptronVariations
 	{
 		static void Main(string[] args)
 		{
+			// TestPlotting();
+
 			var perceptronProblemPairs = new List<PerceptronProblemPair>()
 			{
 				// TODO: Running them independently is not appropiate
@@ -45,6 +48,18 @@ namespace PerceptronVariations
 			}
 
 			Console.ReadKey();
+		}
+
+		private static void TestPlotting()
+		{
+			ScatterBuilder.BuildAndDumpScatters(new List<ScatterInfo>()
+			{
+				new ScatterInfo("Jorge title", "Y AXIS NAME", "X AXIS NAME", new List<Series>()
+				{
+					new Series(new List<double>() {1, 2, 3, 4, 5, 6, 7, 8}, "jorge series 1"),
+					new Series(new List<double>() {8, 7, 6, 5, 4, 3, 2, 1}, "jorge series 2"),
+				})
+			});
 		}
 	}
 }

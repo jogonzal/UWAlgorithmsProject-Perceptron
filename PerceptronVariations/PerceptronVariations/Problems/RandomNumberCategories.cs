@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+
 using PerceptronVariations.Interfaces;
 
 namespace PerceptronVariations.Problems
 {
 	public class RandomNumberCategories : IPerceptronProblem
 	{
-
 		public class Point
 		{
 			public double[] values = new double[dimensions];
@@ -15,6 +15,12 @@ namespace PerceptronVariations.Problems
 			public static double GetRandomNumber(double minimum, double maximum, Random r)
 			{
 				return r.NextDouble() * (maximum - minimum) + minimum;
+			}
+
+			public Point(double[] valuesp, int category)
+			{
+				values = valuesp;
+				Category = category;
 			}
 
 			public Point(int category, Random r)

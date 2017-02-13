@@ -22,6 +22,7 @@ namespace PerceptronVariations.Perceptrons
 		{
 			const int dimensions = 2;
 
+			// Original problem
 			//double[][] inputs = new double[][]
 			//{
 			//	new double[] {0.05, 0.1},
@@ -34,6 +35,7 @@ namespace PerceptronVariations.Perceptrons
 			//	new double[] {0.9},
 			//};
 
+			// XOR problem
 			double[][] inputs = new double[][]
 			{
 				new double[] {0, 0},
@@ -51,14 +53,14 @@ namespace PerceptronVariations.Perceptrons
 			};
 
 			// Neurons and initial weight
-			middleNeurons.Add(new Neuron(new double[] { 0.15, 0.2, 0.5 }));
-			middleNeurons.Add(new Neuron(new double[] { 0.25, 0.3, 0.2 }));
-			middleNeurons.Add(new Neuron(new double[] { 0.1, 0.3, 0.1 }));
-			middleNeurons.Add(new Neuron(new double[] { 0.2, 0, 0 }));
-			middleNeurons.Add(new Neuron(new double[] { 0.9, 0.8, 0.5 }));
-			middleNeurons.Add(new Neuron(new double[] { 0.8, 0.2, 0.35 }));
-			middleNeurons.Add(new Neuron(new double[] { 0.3, 0.1, 0.9 }));
-			middleNeurons.Add(new Neuron(new double[] { 0.25, 0.4, 0.7 }));
+			middleNeurons.Add(new Neuron(new double[] { 0.15, 0.2 }));
+			middleNeurons.Add(new Neuron(new double[] { 0.25, 0.3 }));
+			middleNeurons.Add(new Neuron(new double[] { 0.1, 0.3 }));
+			middleNeurons.Add(new Neuron(new double[] { 0.2, 0, }));
+			middleNeurons.Add(new Neuron(new double[] { 0.9, 0.8 }));
+			middleNeurons.Add(new Neuron(new double[] { 0.8, 0.2 }));
+			middleNeurons.Add(new Neuron(new double[] { 0.3, 0.1 }));
+			middleNeurons.Add(new Neuron(new double[] { 0.25, 0.4 }));
 
 			outputNeurons.Add(new Neuron(new double[] { 0.40, 0.45, 0.60, 0.40, 0.45, 0.60, 0.40, 0.45, 0.60 }));
 			//outputNeurons.Add(new Neuron(new double[] { 0.50, 0.55, 0.60 }));
