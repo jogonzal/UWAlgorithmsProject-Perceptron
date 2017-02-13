@@ -67,7 +67,7 @@ namespace PerceptronVariations.Plotting
 				File.WriteAllText(calculatedPath, templatizedFile);
 
 				// And open it (optionally)
-				// Process.Start(calculatedPath);
+				Process.Start(calculatedPath);
 			}
 		}
 	}

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using PerceptronVariations.Interfaces;
+using PerceptronVariations.Plotting;
 
 namespace PerceptronVariations.Perceptrons
 {
@@ -8,19 +9,18 @@ namespace PerceptronVariations.Perceptrons
 	{
 		private readonly double _learningRate;
 		private readonly int _maxEpochs;
+		private readonly int _middleNeuronCount;
 
-		public MultiLayeredPerceptron(double learningRate, int maxEpochs)
+		public MultiLayeredPerceptron(double learningRate, int maxEpochs, int middleNeuronCount)
 		{
 			_learningRate = learningRate;
 			_maxEpochs = maxEpochs;
+			_middleNeuronCount = middleNeuronCount;
 		}
 
-		List<Neuron> middleNeurons = new List<Neuron>();
-		List<Neuron> outputNeurons = new List<Neuron>();
-
-		public PerceptronResult SolveProblem(IPerceptronProblem problem)
+		public IList<ScatterInfo> SolveProblem(IPerceptronProblem problem)
 		{
-			const int dimensions = 2;
+			Random r = new Random();
 
 			// Original problem
 			//double[][] inputs = new double[][]
@@ -35,44 +35,30 @@ namespace PerceptronVariations.Perceptrons
 			//	new double[] {0.9},
 			//};
 
-			// XOR problem
-			double[][] inputs = new double[][]
-			{
-				new double[] {0, 0},
-				new double[] {0, 1},
-				new double[] {1, 0},
-				new double[] {1, 1},
-			};
-
-			double[][] expected = new double[][]
-			{
-				new double[] {0},
-				new double[] {1},
-				new double[] {1},
-				new double[] {0},
-			};
-
+			List<Neuron> middleNeurons = new List<Neuron>();
 			// Neurons and initial weight
-			middleNeurons.Add(new Neuron(new double[] { 0.15, 0.2 }));
-			middleNeurons.Add(new Neuron(new double[] { 0.25, 0.3 }));
-			middleNeurons.Add(new Neuron(new double[] { 0.1, 0.3 }));
-			middleNeurons.Add(new Neuron(new double[] { 0.2, 0, }));
-			middleNeurons.Add(new Neuron(new double[] { 0.9, 0.8 }));
-			middleNeurons.Add(new Neuron(new double[] { 0.8, 0.2 }));
-			middleNeurons.Add(new Neuron(new double[] { 0.3, 0.1 }));
-			middleNeurons.Add(new Neuron(new double[] { 0.25, 0.4 }));
+			for (int i = 0; i < _middleNeuronCount; i++)
+			{
+				double[] randomWeight = GetRandomWeight(problem.Dimensions + 1, r);
+				middleNeurons.Add(new Neuron(randomWeight));
+			}
 
-			outputNeurons.Add(new Neuron(new double[] { 0.40, 0.45, 0.60, 0.40, 0.45, 0.60, 0.40, 0.45, 0.60 }));
-			//outputNeurons.Add(new Neuron(new double[] { 0.50, 0.55, 0.60 }));
+			List<Neuron> outputNeurons = new List<Neuron>();
+			for (int i = 0; i < problem.OutputDimensions; i++)
+			{
+				double[] randomWeight = GetRandomWeight(_middleNeuronCount + 1, r);
+				outputNeurons.Add(new Neuron(randomWeight));
+			}
 
+			List<double> errors = new List<double>();
 			for (int epoch = 0; epoch < _maxEpochs; epoch++)
 			{
-				for (int inputIndex = 0; inputIndex < inputs.Length; inputIndex++)
+				for (int inputIndex = 0; inputIndex < problem.TrainingPoints.Count; inputIndex++)
 				{
 					var middleOutput = new double[middleNeurons.Count];
 					for (int i = 0; i < middleNeurons.Count; i++)
 					{
-						middleOutput[i] = middleNeurons[i].CalculateOutput(inputs[inputIndex]);
+						middleOutput[i] = middleNeurons[i].CalculateOutput(problem.TrainingPoints[inputIndex].Input);
 					}
 
 					var output = new double[outputNeurons.Count];
@@ -88,7 +74,7 @@ namespace PerceptronVariations.Perceptrons
 					for (int neuronIndex = 0; neuronIndex < outputNeurons.Count; neuronIndex++)
 					{
 						outputNeurons[neuronIndex].Edit();
-						decOutErrorTotals[neuronIndex] = -(expected[inputIndex][neuronIndex] - output[neuronIndex]);
+						decOutErrorTotals[neuronIndex] = -(problem.TrainingPoints[inputIndex].ExpectedOutput[neuronIndex] - output[neuronIndex]);
 						decOutNets[neuronIndex] = output[neuronIndex] * (1 - output[neuronIndex]);
 						for (int neuronInputIndex = 0; neuronInputIndex < middleNeurons.Count; neuronInputIndex++)
 						{
@@ -116,10 +102,10 @@ namespace PerceptronVariations.Perceptrons
 					for (int neuronIndex = 0; neuronIndex < middleNeurons.Count; neuronIndex++)
 					{
 						middleNeurons[neuronIndex].Edit();
-						for (int neuronInputIndex = 0; neuronInputIndex < dimensions; neuronInputIndex++)
+						for (int neuronInputIndex = 0; neuronInputIndex < problem.Dimensions; neuronInputIndex++)
 						{
 							double diffMidOutNet = middleOutput[neuronIndex] * (1 - middleOutput[neuronIndex]);
-							double intermediateResult = diffMidOutNet * totalErrorForNeurons[neuronIndex] * inputs[inputIndex][neuronInputIndex];
+							double intermediateResult = diffMidOutNet * totalErrorForNeurons[neuronIndex] * problem.TrainingPoints[inputIndex].Input[neuronInputIndex];
 							middleNeurons[neuronIndex].nextWeights[neuronInputIndex] -= _learningRate * intermediateResult;
 						}
 					}
@@ -135,33 +121,52 @@ namespace PerceptronVariations.Perceptrons
 					}
 
 					// Calculate again
-					var totalError = CalculateTotalError(inputs, expected, middleNeurons, outputNeurons);
+					var totalError = CalculateTotalError(problem.TrainingPoints, middleNeurons, outputNeurons);
 
-					if (inputIndex % 5 == 0)
-					{
-						Console.WriteLine(totalError);
-					}
+					errors.Add(totalError);
+					//if (inputIndex % 5 == 0)
+					//{
+					//	Console.WriteLine(totalError);
+					//}
 				}
 			}
 
-			throw new NotImplementedException();
+			return new List<ScatterInfo>()
+			{
+				new ScatterInfo($"MultilayerPerceptron {problem.Name} LearningRate {_learningRate} Epochs {_maxEpochs} NeuronCount {_middleNeuronCount}",
+				"TotalError", "Iteration", new List<Series>()
+				{
+					new Series(errors, "Test")
+				})
+			};
 		}
 
-		private double CalculateTotalError(double[][] inputs, double[][] expected, List<Neuron> middleNeurons, List<Neuron> outputNeurons)
+		private double[] GetRandomWeight(int dimensions, Random r)
+		{
+			var rand = new double[dimensions];
+			for (int i = 0; i < dimensions; i++)
+			{
+				rand[i] = r.NextDouble();
+			}
+			return rand;
+		}
+
+		private double CalculateTotalError(IList<Point> trainingPoints, List<Neuron> middleNeurons, List<Neuron> outputNeurons)
 		{
 			double[] middleOutput = new double[middleNeurons.Count];
 			double[] outputs = new double[outputNeurons.Count];
 			double totalError = 0;
-			for (int inputIndex = 0; inputIndex < inputs.Length; inputIndex++)
+			for (int inputIndex = 0; inputIndex < trainingPoints.Count; inputIndex++)
 			{
+				var trainingPoint = trainingPoints[inputIndex];
 				for (int i = 0; i < middleNeurons.Count; i++)
 				{
-					middleOutput[i] = middleNeurons[i].CalculateOutput(inputs[inputIndex]);
+					middleOutput[i] = middleNeurons[i].CalculateOutput(trainingPoint.Input);
 				}
 				for (int i = 0; i < outputNeurons.Count; i++)
 				{
 					outputs[i] = outputNeurons[i].CalculateOutput(middleOutput);
-					totalError += CalculateTotalError(expected[inputIndex][i], outputs[i]);
+					totalError += CalculateTotalError(trainingPoint.ExpectedOutput[i], outputs[i]);
 				}
 			}
 			return totalError;
@@ -170,7 +175,7 @@ namespace PerceptronVariations.Perceptrons
 		private double CalculateTotalError(double expected1, double output1)
 		{
 			double diff = expected1 - output1;
-			return diff*diff/2;
+			return diff * diff / 2;
 		}
 	}
 }

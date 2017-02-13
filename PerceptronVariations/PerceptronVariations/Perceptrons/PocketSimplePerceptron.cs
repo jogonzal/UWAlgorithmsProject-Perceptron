@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+
 using PerceptronVariations.Interfaces;
-using PerceptronVariations.Problems;
+using PerceptronVariations.Plotting;
 
 namespace PerceptronVariations.Perceptrons
 {
@@ -17,9 +17,10 @@ namespace PerceptronVariations.Perceptrons
 		{
 		}
 
-		public override PerceptronResult Test(double[] weights, IList<RandomNumberCategories.Point> problemTestPoints)
+		public override IList<ScatterInfo> Test(double[] weights, IList<Point> problemTestPoints, List<double> trainingErrors,
+			List<double> testErrors)
 		{
-			return base.Test(_optimalWeights, problemTestPoints);
+			return base.Test(_optimalWeights, problemTestPoints, trainingErrors, testErrors);
 		}
 
 		public override void PostEpochOperation(double currentEpochError, double[] weights)
@@ -29,6 +30,20 @@ namespace PerceptronVariations.Perceptrons
 				_minError = currentEpochError;
 				_optimalWeights = weights;
 			}
+		}
+
+		protected override double CalculateTotalErrorTest(IList<Point> problemTrainingPoints, double[] weights)
+		{
+			return base.CalculateTotalErrorTest(problemTrainingPoints, _optimalWeights);
+		}
+
+		protected override string PerceptronName => "Pocket";
+
+		protected override double[] InitializeWeights(IPerceptronProblem problem, Random r)
+		{
+			var originalweights = base.InitializeWeights(problem, r);
+			_optimalWeights = originalweights;
+			return originalweights;
 		}
 	}
 }

@@ -52,18 +52,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interfaces\BasePerceptron.cs" />
+    <Compile Include="Interfaces\Point.cs" />
     <Compile Include="Interfaces\IPerceptron.cs" />
     <Compile Include="Interfaces\IPerceptronProblem.cs" />
     <Compile Include="Interfaces\ITransferFunction.cs" />
-    <Compile Include="Interfaces\PerceptronResult.cs" />
     <Compile Include="PerceptronProblemPair.cs" />
     <Compile Include="Perceptrons\MultiLayeredPerceptron.cs" />
     <Compile Include="Perceptrons\Neuron.cs" />
     <Compile Include="Perceptrons\PocketSimplePerceptron.cs" />
     <Compile Include="Perceptrons\SimplePerceptron.cs" />
     <Compile Include="Plotting\ScatterBuilder.cs" />
+    <Compile Include="Problems\RandomNumberCategoriesSeparable.cs" />
     <Compile Include="Problems\XorLogicalGate.cs" />
-    <Compile Include="Problems\RandomNumberCategories.cs" />
+    <Compile Include="Problems\RandomNumberCategoriesInseparable.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TransferFunction\StepFunction.cs" />

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using PerceptronVariations.Problems;
 
 namespace PerceptronVariations.Interfaces
 {
@@ -8,8 +7,11 @@ namespace PerceptronVariations.Interfaces
 		void Initialize();
 
 		int Dimensions { get; }
+		int OutputDimensions { get; }
 
-		IList<RandomNumberCategories.Point> TrainingPoints { get; }
-		IList<RandomNumberCategories.Point> TestPoints { get; }
+		IList<Point> TrainingPoints { get; }
+		IList<Point> TestPoints { get; }
+
+		string Name { get; }
 	}
 }

@@ -10,22 +10,24 @@ namespace PerceptronVariations.Problems
 		}
 
 		public int Dimensions => 2;
+		public int OutputDimensions => 1;
 
-		public IList<RandomNumberCategories.Point> TrainingPoints
+		public IList<Point> TrainingPoints
 		{
 			get
 			{
-				return new List<RandomNumberCategories.Point>()
+				return new List<Point>()
 				{
-					new RandomNumberCategories.Point(new double[] {0, 0}, 0),
-					new RandomNumberCategories.Point(new double[] {0, 1}, 1),
-					new RandomNumberCategories.Point(new double[] {1, 0}, 1),
-					new RandomNumberCategories.Point(new double[] {1, 1}, 0),
+					new Point(new double[] {0, 0}, new double[] {0}),
+					new Point(new double[] {0, 1}, new double[] {1}),
+					new Point(new double[] {1, 0}, new double[] {1}),
+					new Point(new double[] {1, 1}, new double[] {0}),
 				};
 			}
 		}
 
 		// In this case, same as test points
-		public IList<RandomNumberCategories.Point> TestPoints => TrainingPoints;
+		public IList<Point> TestPoints => TrainingPoints;
+		public string Name => "XOR";
 	}
 }

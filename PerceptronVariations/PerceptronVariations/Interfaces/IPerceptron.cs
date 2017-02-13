@@ -1,7 +1,10 @@
-﻿namespace PerceptronVariations.Interfaces
+﻿using System.Collections.Generic;
+using PerceptronVariations.Plotting;
+
+namespace PerceptronVariations.Interfaces
 {
 	public interface IPerceptron
 	{
-		PerceptronResult SolveProblem(IPerceptronProblem problem);
+		IList<ScatterInfo> SolveProblem(IPerceptronProblem problem);
 	}
 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PerceptronVariations.Plotting;
 
 namespace PerceptronVariations.Interfaces
 {
@@ -16,10 +17,10 @@ namespace PerceptronVariations.Interfaces
 			TransferFunction = transferFunction;
 		}
 
-		public abstract PerceptronResult SolveProblem(IPerceptronProblem problem);
+		public abstract IList<ScatterInfo> SolveProblem(IPerceptronProblem problem);
 
 		public abstract void PostEpochOperation(double currentEpochError, double[] weights);
 
-		public abstract double Normalize(double[] weights, RandomNumberCategories.Point currentPoint);
+		public abstract double Normalize(double[] weights, Point currentPoint);
 	}
 }
