@@ -1,0 +1,73 @@
+﻿<html>
+<head>
+	<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+	<script src="http://code.highcharts.com/highcharts.js"></script>
+	<script src="http://code.highcharts.com/modules/heatmap.js"></script>
+	<script src="http://code.highcharts.com/modules/exporting.js"></script>
+</head>
+<body>
+<div id="container" style="width:100%; height: 100%; margin: 0 auto"></div>
+<script>
+$(function () {
+    Highcharts.chart('container', {
+        chart: {
+            type: 'scatter',
+            zoomType: 'xy'
+        },
+        title: {
+            text: '{{Title}}'
+        },
+        xAxis: {
+            title: {
+                enabled: true,
+                text: '{{XAxisName}}'
+            },
+            startOnTick: true,
+            endOnTick: true,
+            showLastLabel: true
+        },
+        yAxis: {
+            title: {
+                text: '{{YAxisName}}'
+            }
+        },
+        plotOptions: {
+            scatter: {
+				lineWidth:2,
+                marker: {
+                    radius: 4,
+                    states: {
+                        hover: {
+                            enabled: true,
+                            lineColor: 'rgb(100,100,100)'
+                        }
+                    }
+                },
+                states: {
+                    hover: {
+                        marker: {
+                            enabled: false
+                        }
+                    }
+                },
+                tooltip: {
+                    headerFormat: '<b>{series.name}</b><br>',
+                    pointFormat: '{point.x}, {point.y}'
+                }
+            }
+        },
+        series:
+		[
+		{{#each Series}}
+		{
+            name: '{{Name}}',
+            data: {{CoordinatesAsString}}
+        }
+		{{#unless @last}},{{/unless}}
+		{{/each}}
+		]
+    });
+});
+</script>
+</body>
+</html>
