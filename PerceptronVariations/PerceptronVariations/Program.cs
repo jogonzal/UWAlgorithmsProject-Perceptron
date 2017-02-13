@@ -27,15 +27,27 @@ namespace PerceptronVariations
 				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 10, 0.02), new RandomNumberCategories()),
 				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 1, 0.01), new RandomNumberCategories()),
 				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 5, 0.01), new RandomNumberCategories()),
-				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 10, 0.01), new RandomNumberCategories()),
-				//new PerceptronProblemPair(new SimplePerceptron(), new XorLogicalGate()),
-				//new PerceptronProblemPair(new MultiLayeredPerceptron(), new RandomNumberCategories()),
-				new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 1200, 1), new XorLogicalGate()),
-				new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 1200, 2), new XorLogicalGate()),
-				new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 1200, 4), new XorLogicalGate()),
-				new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 1200, 8), new XorLogicalGate()),
-				new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 1200, 16), new XorLogicalGate()),
-				
+
+
+				// XOR gate and how it behaves against Multilayer
+				// new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 50000, 1), new XorLogicalGate()),
+				// new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 5000, 2), new XorLogicalGate()),
+				// new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 2000, 4), new XorLogicalGate()),
+				// new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 2000, 8), new XorLogicalGate()),
+				// new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 2000, 16), new XorLogicalGate()),
+				// new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 20000, 32), new XorLogicalGate()),
+
+				// Multilayer fitting a few points
+				// new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 1000, 2), new FitFewPoints()),
+				// new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 1000, 4), new FitFewPoints()),
+				// new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 1000, 8), new FitFewPoints()),
+				// new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 1000, 16), new FitFewPoints()),
+				// new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 1000, 16), new FitFewPoints()),
+				// new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 1000, 32), new FitFewPoints()),
+
+				// Multilayer fitting a few points - TODO
+				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 100, 0.01), new RandomNumberCategoriesSeparable()),
+				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 100, 0.01), new RandomNumberCategoriesInseparable()),
 			};
 
 			// NOTE: Can be parallelized easily via .AsParallel()
