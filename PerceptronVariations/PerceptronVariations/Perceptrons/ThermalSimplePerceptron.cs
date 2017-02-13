@@ -21,5 +21,13 @@ namespace PerceptronVariations.Perceptrons
 
 			return Math.Pow(Math.E, -(Math.Abs(sum) / Temperature));
 		}
+
+		protected override string PerceptronName
+		{
+			get
+			{
+				return "Thermal";
+			}
+		}
 	}
 }

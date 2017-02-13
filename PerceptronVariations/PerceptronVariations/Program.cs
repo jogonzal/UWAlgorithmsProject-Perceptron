@@ -16,7 +16,7 @@ namespace PerceptronVariations
 
 			var perceptronProblemPairs = new List<PerceptronProblemPair>()
 			{
-				//new PerceptronProblemPair(new PocketSimplePerceptron(new StepFunction(0), 100, 0.02), new RandomNumberCategoriesSeparable()),
+				
 				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 100, 0.02), new RandomNumberCategoriesInseparable()),
 				//new PerceptronProblemPair(new PocketSimplePerceptron(new StepFunction(0), 100, 0.02), new RandomNumberCategoriesInseparable()),
 				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 1, 0.02), new RandomNumberCategories()),
@@ -24,6 +24,10 @@ namespace PerceptronVariations
 				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 10, 0.02), new RandomNumberCategories()),
 				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 1, 0.01), new RandomNumberCategories()),
 				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 5, 0.01), new RandomNumberCategories()),
+
+				// Thermal and simple - Inseparable, thermal better
+				//new PerceptronProblemPair(new ThermalSimplePerceptron(new StepFunction(0), 100, 0.0001, 10), new RandomNumberCategoriesInseparable()),
+				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 100, 0.0001), new RandomNumberCategoriesInseparable()),
 
 				// SimplePerceptron, Pocket, non-separable. Overfitting on SimplePerceptron, but not on Pocket
 				//new PerceptronProblemPair(new PocketSimplePerceptron(new StepFunction(0), 1000, 0.0001), new RandomNumberCategoriesInseparable()),
