@@ -22,6 +22,7 @@ namespace PerceptronVariations.Perceptrons
 		{
 			const int dimensions = 2;
 
+			// Original problem
 			//double[][] inputs = new double[][]
 			//{
 			//	new double[] {0.05, 0.1},
@@ -34,6 +35,7 @@ namespace PerceptronVariations.Perceptrons
 			//	new double[] {0.9},
 			//};
 
+			// XOR problem
 			double[][] inputs = new double[][]
 			{
 				new double[] {0, 0},
