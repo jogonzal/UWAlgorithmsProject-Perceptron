@@ -33,17 +33,17 @@ namespace PerceptronVariations
 				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 100, 0.0001), new RandomNumberCategoriesInseparable()),
 
 				// Multilayer fitting a few points - demonstrate capabilities of multilayer perceptron
-				// new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 1000, 2), new FitFewPoints()),
-				// new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 1000, 4), new FitFewPoints()),
-				// new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 1000, 8), new FitFewPoints()),
-				// new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 1000, 16), new FitFewPoints()),
-				// new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 1000, 32), new FitFewPoints()),
+				 //new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 1000, 2), new CoordinateFitting()),
+				 //new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 1000, 4), new CoordinateFitting()),
+				 //new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 1000, 8), new CoordinateFitting()),
+				 //new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 1000, 16), new CoordinateFitting()),
+				 //new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 1000, 32), new CoordinateFitting()),
 				// Multilayer fitting a few points. Works very nice.
-				//new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 2000, 2), new FitFewPoints()),
-				//new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 2000, 4), new FitFewPoints()),
-				//new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 2000, 8), new FitFewPoints()),
-				//new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 2000, 16), new FitFewPoints()),
-				//new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 2000, 32), new FitFewPoints()),
+				//new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 2000, 2), new CoordinateFitting()),
+				//new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 2000, 4), new CoordinateFitting()),
+				//new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 2000, 8), new CoordinateFitting()),
+				//new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 2000, 16), new CoordinateFitting()),
+				//new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 2000, 32), new CoordinateFitting()),
 
 				// PocketPerceptron is better than simpleperceptron at XOR, but none can converge on it
 				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 1000, 0.05), new XorLogicalGate()),

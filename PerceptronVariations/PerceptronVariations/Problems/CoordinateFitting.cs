@@ -4,7 +4,7 @@ using PerceptronVariations.Interfaces;
 
 namespace PerceptronVariations.Problems
 {
-	public class FitFewPoints : IPerceptronProblem
+	public class CoordinateFitting : IPerceptronProblem
 	{
 		public void Initialize()
 		{
@@ -27,6 +27,6 @@ namespace PerceptronVariations.Problems
 
 		// In this case, same as test points
 		public IList<Point> TestPoints => TrainingPoints;
-		public string Name => "FitFewPoints";
+		public string Name => "CoordinateFitting";
 	}
 }
