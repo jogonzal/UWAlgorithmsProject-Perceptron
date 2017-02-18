@@ -128,7 +128,8 @@ namespace PerceptronVariations.Perceptrons
 				PostEpochOperation(globalError, weights);
 
 				epochs++;
-			} while (globalError > 0 && epochs < _maxEpochs);
+			} while (epochs < _maxEpochs); // Plotting is easier to see when having the same X axis throughout
+			// } while (globalError > 0 && epochs < _maxEpochs); 
 		}
 
 		public override double Normalize(double[] weights, Point currentPoint)
