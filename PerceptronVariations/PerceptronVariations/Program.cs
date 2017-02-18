@@ -16,34 +16,38 @@ namespace PerceptronVariations
 
 			var perceptronProblemPairs = new List<PerceptronProblemPair>()
 			{
-				
-				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 100, 0.02), new RandomNumberCategoriesInseparable()),
-				//new PerceptronProblemPair(new PocketSimplePerceptron(new StepFunction(0), 100, 0.02), new RandomNumberCategoriesInseparable()),
-				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 1, 0.02), new RandomNumberCategories()),
-				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 5, 0.02), new RandomNumberCategories()),
-				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 10, 0.02), new RandomNumberCategories()),
-				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 1, 0.01), new RandomNumberCategories()),
-				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 5, 0.01), new RandomNumberCategories()),
-
-				// Thermal and simple - Inseparable, thermal better
-				//new PerceptronProblemPair(new ThermalSimplePerceptron(new StepFunction(0), 100, 0.0001, 10), new RandomNumberCategoriesInseparable()),
-				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 100, 0.0001), new RandomNumberCategoriesInseparable()),
-
-				// PocketPerceptron is better than simpleperceptron at XOR, but none can converge on it
-				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 1000, 0.05), new XorLogicalGate()),
-				//new PerceptronProblemPair(new PocketSimplePerceptron(new StepFunction(0), 1000, 0.05), new XorLogicalGate()),
-
-				// SimplePerceptron, Pocket, non-separable. Overfitting on SimplePerceptron, but not on Pocket
-				//new PerceptronProblemPair(new PocketSimplePerceptron(new StepFunction(0), 1000, 0.0001), new RandomNumberCategoriesInseparable()),
-				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 1000, 0.0001), new RandomNumberCategoriesInseparable()),
+				// SimplePerceptron, different learning rates
+				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 100, 0.01), new RandomNumberCategoriesSeparable()),
+				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 100, 0.0001), new RandomNumberCategoriesSeparable()),
 
 				// Pocket is better than no pocket
 				//new PerceptronProblemPair(new PocketSimplePerceptron(new StepFunction(0), 100, 0.0001), new RandomNumberCategoriesSeparable()),
 				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 100, 0.0001), new RandomNumberCategoriesSeparable()),
 
-				// SimplePerceptron, different learning rates
-				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 100, 0.01), new RandomNumberCategoriesSeparable()),
-				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 100, 0.0001), new RandomNumberCategoriesSeparable()),
+				// SimplePerceptron vs. Pocket in non-separable. Overfitting on SimplePerceptron, but not on Pocket
+				//new PerceptronProblemPair(new PocketSimplePerceptron(new StepFunction(0), 1000, 0.0001), new RandomNumberCategoriesInseparable()),
+				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 1000, 0.0001), new RandomNumberCategoriesInseparable()),
+
+				// Thermal and simple - Inseparable, thermal better
+				//new PerceptronProblemPair(new ThermalSimplePerceptron(new StepFunction(0), 100, 0.0001, 10), new RandomNumberCategoriesInseparable()),
+				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 100, 0.0001), new RandomNumberCategoriesInseparable()),
+
+				// Multilayer fitting a few points - demonstrate capabilities of multilayer perceptron
+				// new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 1000, 2), new FitFewPoints()),
+				// new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 1000, 4), new FitFewPoints()),
+				// new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 1000, 8), new FitFewPoints()),
+				// new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 1000, 16), new FitFewPoints()),
+				// new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 1000, 32), new FitFewPoints()),
+				// Multilayer fitting a few points. Works very nice.
+				//new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 2000, 2), new FitFewPoints()),
+				//new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 2000, 4), new FitFewPoints()),
+				//new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 2000, 8), new FitFewPoints()),
+				//new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 2000, 16), new FitFewPoints()),
+				//new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 2000, 32), new FitFewPoints()),
+
+				// PocketPerceptron is better than simpleperceptron at XOR, but none can converge on it
+				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 1000, 0.05), new XorLogicalGate()),
+				//new PerceptronProblemPair(new PocketSimplePerceptron(new StepFunction(0), 1000, 0.05), new XorLogicalGate()),
 
 				// XOR gate and how it behaves against Multilayer
 				// new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 50000, 1), new XorLogicalGate()),
@@ -52,20 +56,6 @@ namespace PerceptronVariations
 				// new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 2000, 8), new XorLogicalGate()),
 				// new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 2000, 16), new XorLogicalGate()),
 				// new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 20000, 32), new XorLogicalGate()),
-
-				// Multilayer fitting a few points
-				// new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 1000, 2), new FitFewPoints()),
-				// new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 1000, 4), new FitFewPoints()),
-				// new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 1000, 8), new FitFewPoints()),
-				// new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 1000, 16), new FitFewPoints()),
-				// new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 1000, 32), new FitFewPoints()),
-
-				// Multilayer fitting a few points. Works very nice.
-				//new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 2000, 2), new FitFewPoints()),
-				//new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 2000, 4), new FitFewPoints()),
-				//new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 2000, 8), new FitFewPoints()),
-				//new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 2000, 16), new FitFewPoints()),
-				//new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 2000, 32), new FitFewPoints()),
 
 				// Overfitting when trying to make all neurons work in inseparable data
 				//new PerceptronProblemPair(new MultiLayeredPerceptron(1.5, 2000, 1), new RandomNumberCategoriesInseparable()),

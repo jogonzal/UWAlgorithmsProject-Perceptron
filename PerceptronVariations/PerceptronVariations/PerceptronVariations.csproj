@@ -64,6 +64,7 @@
     <Compile Include="Perceptrons\SimplePerceptron.cs" />
     <Compile Include="Plotting\ScatterBuilder.cs" />
     <Compile Include="Problems\RandomNumberCategoriesSeparable.cs" />
+    <Compile Include="Problems\NandLogicalGate.cs" />
     <Compile Include="Problems\XorLogicalGate.cs" />
     <Compile Include="Problems\FitFewPoints.cs" />
     <Compile Include="Problems\RandomNumberCategoriesInseparable.cs" />

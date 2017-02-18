@@ -4,7 +4,7 @@ using PerceptronVariations.Interfaces;
 
 namespace PerceptronVariations.Problems
 {
-	public class NandLogicalGate : IPerceptronProblem
+	public class XorLogicalGate : IPerceptronProblem
 	{
 		public void Initialize()
 		{
@@ -19,7 +19,7 @@ namespace PerceptronVariations.Problems
 			{
 				return new List<Point>()
 				{
-					new Point(new double[] {0, 0}, new double[] {1}),
+					new Point(new double[] {0, 0}, new double[] {0}),
 					new Point(new double[] {0, 1}, new double[] {1}),
 					new Point(new double[] {1, 0}, new double[] {1}),
 					new Point(new double[] {1, 1}, new double[] {0}),
@@ -29,6 +29,6 @@ namespace PerceptronVariations.Problems
 
 		// In this case, same as test points
 		public IList<Point> TestPoints => TrainingPoints;
-		public string Name => "NAND";
+		public string Name => "XOR";
 	}
 }
