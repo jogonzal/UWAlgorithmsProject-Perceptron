@@ -13,20 +13,24 @@ namespace PerceptronVariations
 		static void Main(string[] args)
 		{
 			// TestPlotting();
+			var randomCategoriesSeparableProblem = new RandomNumberCategoriesSeparable();
+			var randomCategoriesInseparableProblem = new RandomNumberCategoriesInseparable();
 
 			var perceptronProblemPairs = new List<PerceptronProblemPair>()
 			{
 				// SimplePerceptron, different learning rates
-				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 100, 0.01), new RandomNumberCategoriesSeparable()),
-				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 100, 0.0001), new RandomNumberCategoriesSeparable()),
+				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 100, 0.01), randomCategoriesSeparableProblem),
+				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 100, 0.0001), randomCategoriesSeparableProblem),
+				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 100, 0.00005), randomCategoriesSeparableProblem),
 
 				// Pocket is better than no pocket
-				//new PerceptronProblemPair(new PocketSimplePerceptron(new StepFunction(0), 100, 0.0001), new RandomNumberCategoriesSeparable()),
-				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 100, 0.0001), new RandomNumberCategoriesSeparable()),
+				
+				new PerceptronProblemPair(new PocketSimplePerceptron(new StepFunction(0), 100, 0.0001), randomCategoriesSeparableProblem),
+				new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 100, 0.0001), randomCategoriesSeparableProblem),
 
 				// SimplePerceptron vs. Pocket in non-separable. Overfitting on SimplePerceptron, but not on Pocket
-				//new PerceptronProblemPair(new PocketSimplePerceptron(new StepFunction(0), 1000, 0.0001), new RandomNumberCategoriesInseparable()),
-				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 1000, 0.0001), new RandomNumberCategoriesInseparable()),
+				//new PerceptronProblemPair(new PocketSimplePerceptron(new StepFunction(0), 1000, 0.0001), randomCategoriesInseparableProblem),
+				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 1000, 0.0001), randomCategoriesInseparableProblem),
 
 				// Thermal and simple - Inseparable, thermal better
 				//new PerceptronProblemPair(new ThermalSimplePerceptron(new StepFunction(0), 100, 0.0001, 10), new RandomNumberCategoriesInseparable()),
