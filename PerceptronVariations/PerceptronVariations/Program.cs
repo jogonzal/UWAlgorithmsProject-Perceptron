@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 using PerceptronVariations.Perceptrons;
 using PerceptronVariations.Plotting;
@@ -19,59 +18,58 @@ namespace PerceptronVariations
 			var perceptronProblemPairs = new List<PerceptronProblemPair>()
 			{
 				// SimplePerceptron, different learning rates
-				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 100, 0.01), randomCategoriesSeparableProblem),
-				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 100, 0.0001), randomCategoriesSeparableProblem),
-				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 100, 0.00005), randomCategoriesSeparableProblem),
+				new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 100, 0.01), randomCategoriesSeparableProblem),
+				new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 100, 0.0001), randomCategoriesSeparableProblem),
+				new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 100, 0.00005), randomCategoriesSeparableProblem),
 
 				// Pocket is better than no pocket
-
-				//new PerceptronProblemPair(new PocketSimplePerceptron(new StepFunction(0), 100, 0.0001), randomCategoriesSeparableProblem),
-				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 100, 0.0001), randomCategoriesSeparableProblem),
+				new PerceptronProblemPair(new PocketSimplePerceptron(new StepFunction(0), 100, 0.0001), randomCategoriesSeparableProblem),
+				new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 100, 0.0001), randomCategoriesSeparableProblem),
 
 				// SimplePerceptron vs. Pocket in non-separable. Overfitting on SimplePerceptron, but not on Pocket
-				//new PerceptronProblemPair(new PocketSimplePerceptron(new StepFunction(0), 1000, 0.0001), randomCategoriesInseparableProblem),
-				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 1000, 0.0001), randomCategoriesInseparableProblem),
+				new PerceptronProblemPair(new PocketSimplePerceptron(new StepFunction(0), 1000, 0.0001), randomCategoriesInseparableProblem),
+				new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 1000, 0.0001), randomCategoriesInseparableProblem),
 
 				// Thermal and simple - Inseparable, thermal better
-				//new PerceptronProblemPair(new ThermalSimplePerceptron(new StepFunction(0), 100, 0.0001, 10), new RandomNumberCategoriesInseparable()),
-				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 100, 0.0001), new RandomNumberCategoriesInseparable()),
+				new PerceptronProblemPair(new ThermalSimplePerceptron(new StepFunction(0), 100, 0.0001, 10), new RandomNumberCategoriesInseparable()),
+				new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 100, 0.0001), new RandomNumberCategoriesInseparable()),
 
 				// Multilayer fitting a few points - demonstrate capabilities of multilayer perceptron
-				//new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 1000, 2), new CoordinateFitting()),
-				//new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 1000, 4), new CoordinateFitting()),
-				//new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 1000, 8), new CoordinateFitting()),
-				//new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 1000, 16), new CoordinateFitting()),
-				//new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 1000, 32), new CoordinateFitting()),
+				new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 1000, 2), new CoordinateFitting()),
+				new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 1000, 4), new CoordinateFitting()),
+				new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 1000, 8), new CoordinateFitting()),
+				new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 1000, 16), new CoordinateFitting()),
+				new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 1000, 32), new CoordinateFitting()),
 				// Multilayer fitting a few points. Works very nice.
-				//new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 2000, 2), new CoordinateFitting()),
-				//new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 2000, 4), new CoordinateFitting()),
-				//new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 2000, 8), new CoordinateFitting()),
-				//new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 2000, 16), new CoordinateFitting()),
-				//new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 2000, 32), new CoordinateFitting()),
+				new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 2000, 2), new CoordinateFitting()),
+				new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 2000, 4), new CoordinateFitting()),
+				new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 2000, 8), new CoordinateFitting()),
+				new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 2000, 16), new CoordinateFitting()),
+				new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 2000, 32), new CoordinateFitting()),
 
 				// SimplePerceptron and NAND
-				 //new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 50, 0.03), new NandLogicalGate()),
-				 //new PerceptronProblemPair(new PocketSimplePerceptron(new StepFunction(0), 50, 0.03), new NandLogicalGate()),
-				 //new PerceptronProblemPair(new MultiLayeredPerceptron(1, 1000, 4), new NandLogicalGate()),
+				 new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 50, 0.03), new NandLogicalGate()),
+				 new PerceptronProblemPair(new PocketSimplePerceptron(new StepFunction(0), 50, 0.03), new NandLogicalGate()),
+				 new PerceptronProblemPair(new MultiLayeredPerceptron(1, 1000, 4), new NandLogicalGate()),
 
 				// PocketPerceptron is better than simpleperceptron at XOR, but none can converge on it
-				//new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 1000, 0.05), new XorLogicalGate()),
-				//new PerceptronProblemPair(new PocketSimplePerceptron(new StepFunction(0), 1000, 0.05), new XorLogicalGate()),
+				new PerceptronProblemPair(new SimplePerceptron(new StepFunction(0), 1000, 0.05), new XorLogicalGate()),
+				new PerceptronProblemPair(new PocketSimplePerceptron(new StepFunction(0), 1000, 0.05), new XorLogicalGate()),
 
 				// XOR gate and how it behaves against Multilayer
-				 //new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 3000, 1), new XorLogicalGate()),
-				 //new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 3000, 2), new XorLogicalGate()),
-				 //new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 3000, 4), new XorLogicalGate()),
-				 //new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 3000, 8), new XorLogicalGate()),
-				 //new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 3000, 16), new XorLogicalGate()),
-				 //new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 3000, 32), new XorLogicalGate()),
+				new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 3000, 1), new XorLogicalGate()),
+				new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 3000, 2), new XorLogicalGate()),
+				new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 3000, 4), new XorLogicalGate()),
+				new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 3000, 8), new XorLogicalGate()),
+				new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 3000, 16), new XorLogicalGate()),
+				new PerceptronProblemPair(new MultiLayeredPerceptron(0.5, 3000, 32), new XorLogicalGate()),
 
 				// Overfitting when trying to make all neurons work in inseparable data
-				//new PerceptronProblemPair(new MultiLayeredPerceptron(1.5, 2000, 1), randomCategoriesInseparableProblem),
-				//new PerceptronProblemPair(new MultiLayeredPerceptron(1.5, 2000, 2), randomCategoriesInseparableProblem),
-				//new PerceptronProblemPair(new MultiLayeredPerceptron(1.5, 2000, 4), randomCategoriesInseparableProblem),
-				//new PerceptronProblemPair(new MultiLayeredPerceptron(1.5, 2000, 8), randomCategoriesInseparableProblem),
-				//new PerceptronProblemPair(new MultiLayeredPerceptron(1.5, 2000, 16), randomCategoriesInseparableProblem)
+				new PerceptronProblemPair(new MultiLayeredPerceptron(1.5, 2000, 1), randomCategoriesInseparableProblem),
+				new PerceptronProblemPair(new MultiLayeredPerceptron(1.5, 2000, 2), randomCategoriesInseparableProblem),
+				new PerceptronProblemPair(new MultiLayeredPerceptron(1.5, 2000, 4), randomCategoriesInseparableProblem),
+				new PerceptronProblemPair(new MultiLayeredPerceptron(1.5, 2000, 8), randomCategoriesInseparableProblem),
+				new PerceptronProblemPair(new MultiLayeredPerceptron(1.5, 2000, 16), randomCategoriesInseparableProblem)
 			};
 
 			// NOTE: Can be parallelized easily via .AsParallel()
