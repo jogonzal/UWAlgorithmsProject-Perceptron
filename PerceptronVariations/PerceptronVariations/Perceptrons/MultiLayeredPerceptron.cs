@@ -125,7 +125,7 @@ namespace PerceptronVariations.Perceptrons
 
 			return new List<ScatterInfo>()
 			{
-				new ScatterInfo($"MultilayerPerceptron {problem.Name} LearningRate {_learningRate} Epochs {_maxEpochs} NeuronCount {_middleNeuronCount}",
+				new ScatterInfo($"MultilayerPerceptron {problem.Name} LearningRate {_learningRate} Epochs {_maxEpochs} IntermediateNeuronCount {_middleNeuronCount}",
 				"TotalError", "Iteration", new List<Series>()
 				{
 					new Series(trainingErrors, "Training"),
