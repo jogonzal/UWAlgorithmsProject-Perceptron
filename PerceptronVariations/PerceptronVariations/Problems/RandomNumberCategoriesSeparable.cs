@@ -71,7 +71,7 @@ namespace PerceptronVariations.Problems
 				case 1:
 					input[0] = GetRandomNumber(1, 8, r);
 					input[1] = GetRandomNumber(-2, 4, r);
-					input[2] = GetRandomNumber(2, 8, r);
+					input[2] = GetRandomNumber(4, 12, r);
 					break;
 				default:
 					throw new ArgumentException();
